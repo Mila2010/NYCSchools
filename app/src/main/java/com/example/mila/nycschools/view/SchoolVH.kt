@@ -16,10 +16,10 @@ class SchoolVH (parent: ViewGroup?)
 
     private var view: View = itemView
 
-    fun bindSchools(school: NYCSchools) {
+    fun bindSchools(school: NYCSchools, onClickListener: (school: NYCSchools) -> Unit) {
         view.school_name.text = school.getmSchools().schoolName
         view.location.text = school.getmSchools().borough
-
+        view.setOnClickListener { onClickListener.invoke(school) }
 
     }
 

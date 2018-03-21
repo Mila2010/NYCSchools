@@ -108,7 +108,7 @@ public class Presenter implements ViewPresenterContract.Presenter {
 
     @Override
     public void setClickListener() {
-
-
+        Disposable onClick = mView.getmAdapter().getClickEvent().subscribe(nycSchool -> mView.showSchool(nycSchool));
+        mDisposables.add(onClick);
     }
 }

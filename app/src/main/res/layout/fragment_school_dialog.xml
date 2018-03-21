@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/small_margin"
+    android:paddingEnd="@dimen/small_margin">
+
+    <TextView
+        android:id="@+id/school_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/phone_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/school_title" />
+
+    <TextView
+        android:id="@+id/phone_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WidgetStyle"
+        android:autoLink="phone"
+        app:layout_constraintEnd_toEndOf="@+id/url"
+        app:layout_constraintStart_toStartOf="@+id/url"
+        app:layout_constraintTop_toBottomOf="@+id/school_title" />
+
+    <TextView
+        android:id="@+id/web_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/web_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number" />
+
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/WidgetStyle"
+        android:autoLink="web"
+        android:gravity="center_horizontal"
+        android:singleLine="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/web_url"
+        app:layout_constraintTop_toBottomOf="@+id/phone_value" />
+
+    <TextView
+        android:id="@+id/study_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/study_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/url" />
+
+    <TextView
+        android:id="@+id/main_study"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WidgetStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/study_title" />
+
+    <TextView
+        android:id="@+id/sat_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/sat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_study"
+        app:layout_constraintTop_toBottomOf="@+id/main_study" />
+
+    <TextView
+        android:id="@+id/reading_sat"
+        style="@style/WidgetStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/read_title"
+        app:layout_constraintTop_toBottomOf="@+id/sat_title" />
+
+    <TextView
+        android:id="@+id/writing_sat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WidgetStyle"
+        app:layout_constraintEnd_toEndOf="@+id/reading_sat"
+        app:layout_constraintStart_toStartOf="@+id/reading_sat"
+        app:layout_constraintTop_toBottomOf="@+id/reading_sat" />
+
+    <TextView
+        android:id="@+id/math_sat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_margin"
+        style="@style/WidgetStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/writing_sat"
+        app:layout_constraintStart_toStartOf="@+id/writing_sat"
+        app:layout_constraintTop_toBottomOf="@+id/writing_sat"
+        app:layout_constraintVertical_bias="0.00999999" />
+
+    <TextView
+        android:id="@+id/read_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/reading_sat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sat_title" />
+
+    <TextView
+        android:id="@+id/write_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/writing_sat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/read_title" />
+
+    <TextView
+        android:id="@+id/math_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_margin"
+        style="@style/TitleStyle"
+        android:text="@string/math_sat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/write_title" />
+</android.support.constraint.ConstraintLayout>
