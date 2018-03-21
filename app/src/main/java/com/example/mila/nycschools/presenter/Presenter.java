@@ -80,15 +80,15 @@ public class Presenter implements ViewPresenterContract.Presenter {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-
+        ApiService service = repo.create(ApiService.class);
         //declaration of schools observable which emits list of schools with general info when receiving it from network
-        Observable<List<SchoolResponse>> schools = repo.create(ApiService.class)
+        Observable<List<SchoolResponse>> schools = service
                 .getSchools(APP_TOKEN)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
 
         //declaration of sat observable which emits list of schools with sat info when receiving it from network
-        Observable<List<SATResponse>> sat = repo.create(ApiService.class)
+        Observable<List<SATResponse>> sat = service
                 .getSAT(APP_TOKEN)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
