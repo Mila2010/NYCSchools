@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">NYCSchools</string>
+    <string name="error_message">Can\'t load data this moment, please try again later</string>
+    <string name="study_title">Main study:</string>
+    <string name="web_title">Website URL:</string>
+    <string name="phone_title">Phone number:</string>
+    <string name="math_sat">Math average SAT:</string>
+    <string name="writing_sat">Writing average SAT:</string>
+    <string name="reading_sat">Reading average SAT:</string>
+    <string name="sat">SAT:</string>
+    <string name="study_string">%1$s, %2$s</string>
+    <string name="location">Location:</string>
 </resources>

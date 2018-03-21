@@ -19,10 +19,6 @@ public interface ApiService {
     @GET("97mf-9njv.json")
     Observable<List<SchoolResponse>> getSchools(@Query("$$app_token") String appToken);
 
-    @GET("97mf-9njv.json")
-    Call<List<SchoolResponse>> getSchool(@Query("$$app_token") String appToken);
-
-
     @GET("734v-jeq5.json")
     Observable<List<SATResponse>> getSAT(@Query("$$app_token") String appToken);
 }

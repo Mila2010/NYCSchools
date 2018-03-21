@@ -12,6 +12,7 @@ import com.google.gson.annotations.SerializedName;
 public class SchoolResponse implements Parcelable {
     @SerializedName("dbn")
     private String mId;
+    @SerializedName("borough")
     private String mBorough;
     @SerializedName("interest1")
     private String mMainStudy;
@@ -25,7 +26,9 @@ public class SchoolResponse implements Parcelable {
     private String mSchoolName;
     @SerializedName("state_code")
     private String mState;
+    @SerializedName("website")
     private String mWebsite;
+    @SerializedName("zip")
     private String mZip;
 
     private SchoolResponse(Parcel in) {
