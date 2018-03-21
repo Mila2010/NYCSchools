@@ -19,6 +19,7 @@ class SchoolVH (parent: ViewGroup?)
     fun bindSchools(school: NYCSchools, onClickListener: (school: NYCSchools) -> Unit) {
         view.school_name.text = school.getmSchools().schoolName
         view.location.text = school.getmSchools().borough
+        //setting onClick to school list item and invoking function to handle click
         view.setOnClickListener { onClickListener.invoke(school) }
 
     }
