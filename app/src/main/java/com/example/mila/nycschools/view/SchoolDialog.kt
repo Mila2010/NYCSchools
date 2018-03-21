@@ -17,7 +17,8 @@ class SchoolDialog : DialogFragment() {
 
 
     companion object {
-
+        //companion object is being used to declare static function in Kotlin, newInstance creating new instance of SchoolDialog
+        //JvmStatic is used to allow Java class to see method in companion object as static
         @JvmStatic
         fun newInstance(school: NYCSchools): SchoolDialog {
             val dialog = SchoolDialog()

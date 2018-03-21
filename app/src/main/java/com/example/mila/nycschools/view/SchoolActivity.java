@@ -1,6 +1,7 @@
 package com.example.mila.nycschools.view;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,13 +14,17 @@ import android.widget.Toast;
 
 import com.example.mila.nycschools.ProgressDialog;
 import com.example.mila.nycschools.R;
+import com.example.mila.nycschools.SavedInstanceFragment;
 import com.example.mila.nycschools.ViewPresenterContract;
 import com.example.mila.nycschools.model.NYCSchools;
 import com.example.mila.nycschools.presenter.Presenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.mila.nycschools.model.Constants.SAVED_INSTANCE;
 import static com.example.mila.nycschools.model.Constants.SCHOOL_DIALOG;
+import static com.example.mila.nycschools.model.Constants.SCHOOL_LIST;
 
 /**
  * Created by mila on 3/20/18.
@@ -40,12 +45,25 @@ public class SchoolActivity extends AppCompatActivity implements ViewPresenterCo
         Presenter presenter = new Presenter(this);
         mDialog = new ProgressDialog(this, R.drawable.spinner);
         initRecyclerView();
+
+        //if onSaveInstanceState has been called perhaps because of screen rotation, then object of SavedInstanceFragment was created
+        // and list of schools saved, so it is still in memory and can be found by tag.
+        SavedInstanceFragment schoolsData = (SavedInstanceFragment) getSupportFragmentManager().findFragmentByTag(SAVED_INSTANCE);
+        if (schoolsData != null) {
+            //retrieving school data from fragment
+            mSchools = schoolsData.popData().getParcelableArrayList(SCHOOL_LIST);
+            setSchoolList(mSchools);
+            mIsFetchRequired = false;
+        } else {
+            mIsFetchRequired = true;
+        }
         mPresenter.setClickListener();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        //check if it is required to fetch list of schools from network, or if it's being saved
         if (mIsFetchRequired) {
             mDialog.show();
             mPresenter.connect();
@@ -87,7 +105,6 @@ public class SchoolActivity extends AppCompatActivity implements ViewPresenterCo
 
     @Override
     public void showSchool(NYCSchools nycSchool) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(SCHOOL_DIALOG);
         if (fragment != null) {
@@ -108,6 +125,19 @@ public class SchoolActivity extends AppCompatActivity implements ViewPresenterCo
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.getmDisposable().dispose();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //saving list of school to handle rotation case, saving data straight in Bundle causing TransactionTooLargeException
+        //Google is suggesting to do it with Fragment that retains instance.
+
+        if (mSchools != null) {
+            Bundle schoolsData = new Bundle();
+            schoolsData.putParcelableArrayList(SCHOOL_LIST, (ArrayList<? extends Parcelable>) mSchools);
+            SavedInstanceFragment.getInstance(getSupportFragmentManager()).pushData((Bundle) schoolsData);
+        }
+        super.onSaveInstanceState(outState);
     }
 
     private void setSchoolList(List<NYCSchools> schools) {
