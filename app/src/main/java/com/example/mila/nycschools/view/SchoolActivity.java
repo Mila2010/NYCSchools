@@ -2,8 +2,6 @@ package com.example.mila.nycschools.view;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -17,14 +15,15 @@ import com.example.mila.nycschools.R;
 import com.example.mila.nycschools.SavedInstanceFragment;
 import com.example.mila.nycschools.ViewPresenterContract;
 import com.example.mila.nycschools.model.NYCSchools;
+import com.example.mila.nycschools.model.RepositoryImpl;
 import com.example.mila.nycschools.presenter.Presenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.mila.nycschools.model.Constants.SAVED_INSTANCE;
-import static com.example.mila.nycschools.model.Constants.SCHOOL_DIALOG;
-import static com.example.mila.nycschools.model.Constants.SCHOOL_LIST;
+import static com.example.mila.nycschools.model.AppConstants.SAVED_INSTANCE;
+import static com.example.mila.nycschools.model.AppConstants.SCHOOL_DIALOG;
+import static com.example.mila.nycschools.model.AppConstants.SCHOOL_LIST;
 
 /**
  * Created by mila on 3/20/18.
@@ -42,7 +41,8 @@ public class SchoolActivity extends AppCompatActivity implements ViewPresenterCo
    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schools);
-        Presenter presenter = new Presenter(this);
+        RepositoryImpl repository = RepositoryImpl.getINSTANCE();
+        Presenter presenter = new Presenter(this,repository);
         mDialog = new ProgressDialog(this, R.drawable.spinner);
         initRecyclerView();
 
@@ -130,7 +130,7 @@ public class SchoolActivity extends AppCompatActivity implements ViewPresenterCo
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //saving list of school to handle rotation case, saving data straight in Bundle causing TransactionTooLargeException
-        //Google is suggesting to do it with Fragment that retains instance.
+        //Google is suggesting to do it with Fragment that retains INSTANCE.
 
         if (mSchools != null) {
             Bundle schoolsData = new Bundle();

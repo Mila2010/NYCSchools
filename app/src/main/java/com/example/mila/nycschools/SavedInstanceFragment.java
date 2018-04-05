@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import static com.example.mila.nycschools.model.Constants.SAVED_INSTANCE;
+import static com.example.mila.nycschools.model.AppConstants.SAVED_INSTANCE;
 
 /**
  * Created by mila on 3/20/18.

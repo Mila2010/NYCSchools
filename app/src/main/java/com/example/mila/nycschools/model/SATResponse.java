@@ -20,8 +20,10 @@ public class SATResponse implements Parcelable {
     @SerializedName("sat_writing_avg_score")
     private String mWritingScore;
 
+    public SATResponse() {
 
-    private SATResponse(Parcel in) {
+    }
+     private SATResponse(Parcel in) {
         mId = in.readString();
         mReadingScore = in.readString();
         mMathScore = in.readString();
@@ -68,6 +70,11 @@ public class SATResponse implements Parcelable {
 
     public String getWritingScore() {
         return mWritingScore;
+    }
+
+    public void setId(String id){
+        this.mId=id;
+
     }
 
 }

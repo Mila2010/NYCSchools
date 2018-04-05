@@ -31,6 +31,10 @@ public class SchoolResponse implements Parcelable {
     @SerializedName("zip")
     private String mZip;
 
+    public SchoolResponse() {
+
+    }
+
     private SchoolResponse(Parcel in) {
         mId = in.readString();
         mBorough = in.readString();
@@ -86,6 +90,10 @@ public class SchoolResponse implements Parcelable {
 
     public String getWebsite() {
         return mWebsite;
+    }
+
+    public void setId(String id){
+        this.mId=id;
     }
 
 

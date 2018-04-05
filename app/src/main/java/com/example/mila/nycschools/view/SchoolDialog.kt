@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mila.nycschools.R
-import com.example.mila.nycschools.model.Constants
+import com.example.mila.nycschools.model.AppConstants.SCHOOL_TO_SHOW
 import com.example.mila.nycschools.model.NYCSchools
 import kotlinx.android.synthetic.main.fragment_school_dialog.view.*
 
@@ -17,13 +17,13 @@ class SchoolDialog : DialogFragment() {
 
 
     companion object {
-        //companion object is being used to declare static function in Kotlin, newInstance creating new instance of SchoolDialog
+        //companion object is being used to declare static function in Kotlin, newInstance creating new INSTANCE of SchoolDialog
         //JvmStatic is used to allow Java class to see method in companion object as static
         @JvmStatic
         fun newInstance(school: NYCSchools): SchoolDialog {
             val dialog = SchoolDialog()
             val args = Bundle()
-            args.putParcelable(Constants.SCHOOL_TO_SHOW, school)
+            args.putParcelable(SCHOOL_TO_SHOW, school)
             dialog.arguments = args
             return dialog
         }
@@ -38,7 +38,7 @@ class SchoolDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val school = arguments!!.getParcelable<NYCSchools>(Constants.SCHOOL_TO_SHOW)
+        val school = arguments!!.getParcelable<NYCSchools>(SCHOOL_TO_SHOW)
         view.school_title.text = school.getmSchools().schoolName
         view.phone_value.text = school.getmSchools().phoneNumber
         view.url.text = school.getmSchools().website

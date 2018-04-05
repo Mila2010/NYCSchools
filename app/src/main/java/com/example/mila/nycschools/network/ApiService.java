@@ -1,4 +1,4 @@
-package com.example.mila.nycschools.presenter;
+package com.example.mila.nycschools.network;
 
 import com.example.mila.nycschools.model.SATResponse;
 import com.example.mila.nycschools.model.SchoolResponse;
