@@ -28,7 +28,7 @@ open class RepositoryImpl private constructor(){
 
     }
 
-    fun initNYCSchools() {
+    open fun initNYCSchools() {
 
         val schools = mApiService
                 .getSchools(APP_TOKEN)

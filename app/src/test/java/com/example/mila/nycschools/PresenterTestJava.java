@@ -47,6 +47,7 @@ public class PresenterTestJava {
         MockitoAnnotations.initMocks(this);
         mPresenter= new Presenter(mView,mRepo);
 
+
     }
 
     @Test
@@ -58,6 +59,7 @@ public class PresenterTestJava {
     @Test
     public void testConnect_Successful() {
         List<NYCSchools> list = new ArrayList<>();
+        Mockito.doNothing().when(mRepo).initNYCSchools();
         Mockito.when(mRepo.getSchools()).thenReturn( Observable.just(list));
         mPresenter.connect();
         verify(mView).showList(any());
@@ -65,17 +67,11 @@ public class PresenterTestJava {
 
     @Test
     public void testConnect_Unsuccessful() {
+        Mockito.doNothing().when(mRepo).initNYCSchools();
         Mockito.when(mRepo.getSchools()).thenReturn(Observable.error(new Exception("dummy exception")));
         mPresenter.connect();
         verify(mView).showError();
     }
-    public void forTest(){
 
-        //Mockito.doNothing().when(mRepo).initNYCSchools();
-        //Mockito.doReturn(Observable.just(list)).when(mRepo).getSchools();
-
-        //testScheduler.start();
-        // Mockito.doNothing().when(mView).showList(list);
-    }
 
 }
