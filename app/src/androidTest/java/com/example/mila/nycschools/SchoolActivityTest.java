@@ -11,8 +11,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.CoreMatchers.anything;
 import static org.junit.Assert.assertEquals;
-
+import static android.support.test.espresso.Espresso.onData;
 /**
  * Created by mila on 4/5/18.
  */
@@ -40,9 +47,9 @@ public class SchoolActivityTest {
 
     @Test
     public void test_dialog_Shown() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("com.example.mila.nycschools", appContext.getPackageName());
+        onView(withId(R.id.school_list)).perform(scrollTo());
+        onData(anything()).atPosition(1).perform(click());
+        onView(withId(R.id.school_title)).check(matches(isDisplayed()));
     }
 
     @Test

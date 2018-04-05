@@ -19,9 +19,13 @@ open class RepositoryImpl private constructor(){
     private var mNYCSchools:Observable<List<NYCSchools>> ?= null
     open fun getSchools():Observable<List<NYCSchools>>? = mNYCSchools
 
+
+
     companion object {
+
         @JvmStatic
         val INSTANCE: RepositoryImpl by lazy { Holder.INSTANCE }
+
     }
 
     fun initNYCSchools() {

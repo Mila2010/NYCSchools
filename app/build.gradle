@@ -39,6 +39,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    compile 'com.android.support:multidex:1.0.1'
+
     //IU Libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:design:$android_support_version"
