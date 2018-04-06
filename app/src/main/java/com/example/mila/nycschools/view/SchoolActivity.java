@@ -29,9 +29,9 @@ import static com.example.mila.nycschools.model.AppConstants.SCHOOL_LIST;
  * Created by mila on 3/20/18.
  */
 
-public class SchoolActivity extends AppCompatActivity implements ViewPresenterContract.View<ViewPresenterContract.Presenter>{
+public class SchoolActivity extends AppCompatActivity implements ViewPresenterContract.View{
 
-    private SchoolAdapter mAdapter;
+    public SchoolAdapter mAdapter;
     private ProgressDialog mDialog;
     private List<NYCSchools> mSchools;
     private Boolean mIsFetchRequired = true;

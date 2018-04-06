@@ -13,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public interface ViewPresenterContract {
 
-    interface View<Presenter> {
+     interface View {
 
 
         void showList(List<NYCSchools> schools);

@@ -4,7 +4,10 @@ package com.example.mila.nycschools;
 
 import com.example.mila.nycschools.model.NYCSchools;
 import com.example.mila.nycschools.model.RepositoryImpl;
+import com.example.mila.nycschools.model.SATResponse;
+import com.example.mila.nycschools.model.SchoolResponse;
 import com.example.mila.nycschools.presenter.Presenter;
+import com.example.mila.nycschools.view.SchoolAdapter;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -35,6 +38,12 @@ public class PresenterTestJava {
 
     @Mock
     private ViewPresenterContract.View mView;
+
+    @Mock
+    private NYCSchools mSchools;
+
+    @Mock
+    private SchoolAdapter mAdapter;
 
     @Mock
     private RepositoryImpl mRepo;
@@ -73,5 +82,12 @@ public class PresenterTestJava {
         verify(mView).showError();
     }
 
+    @Test
+    public void test_setClickListener() {
+        Mockito.when(mView.getmAdapter()).thenReturn(mAdapter);
+        Mockito.when(mAdapter.clickEvent()).thenReturn(Observable.just(mSchools));
+        mPresenter.setClickListener();
+        verify(mView).showSchool(mSchools);
+    }
 
 }

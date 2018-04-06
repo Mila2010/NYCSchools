@@ -47,7 +47,7 @@ public class Presenter implements ViewPresenterContract.Presenter {
     public void setClickListener() {
         //View has an access to click event observable which declared in School Adapter,
         //subscribing to listen for click event and if event appear ask View to show information about school which being clicked
-        Disposable onClick = mView.getmAdapter().getClickEvent().subscribe(nycSchool -> mView.showSchool(nycSchool));
+        Disposable onClick = mView.getmAdapter().clickEvent().subscribe(nycSchool -> mView.showSchool(nycSchool));
         //adding Disposable subscription created above to composite disposable object to dispose subscription later on to avoid memory leakage
         mDisposables.add(onClick);
     }

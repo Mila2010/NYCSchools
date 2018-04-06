@@ -9,11 +9,12 @@ import io.reactivex.subjects.PublishSubject
 /**
  * Created by mila on 3/20/18.
  */
-class SchoolAdapter : RecyclerView.Adapter<SchoolVH>() {
+open class SchoolAdapter : RecyclerView.Adapter<SchoolVH>() {
 
     private val clickSubject = PublishSubject.create<NYCSchools>()
     private var schools: ArrayList<NYCSchools> = arrayListOf()
-    val clickEvent: Observable<NYCSchools> = clickSubject
+    open fun clickEvent() : Observable<NYCSchools>  {
+        return clickSubject}
 
     fun setSchools(schoolList: Collection<NYCSchools>) {
         schools.clear()
