@@ -4,7 +4,7 @@ import com.example.mila.nycschools.model.NYCSchools;
 import com.example.mila.nycschools.model.RepositoryImpl;
 import com.example.mila.nycschools.model.SATResponse;
 import com.example.mila.nycschools.model.SchoolResponse;
-import com.example.mila.nycschools.network.ApiService;
+import com.example.mila.nycschools.network.Api;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,13 +25,13 @@ import static org.mockito.ArgumentMatchers.any;
 /**
  * Created by mila on 4/4/18.
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class RepositoryTest {
 
     private RepositoryImpl mRepo;
 
     @Mock
-    private ApiService mService;
+    private Api mService;
 
 
     @Before
@@ -42,8 +42,8 @@ public class RepositoryTest {
 
     @Test
     public void test_initSchools() {
-        Mockito.when(mService.getSchools(any())).thenReturn( Observable.just(initScools()));
-        Mockito.when(mService.getSAT(any())).thenReturn( Observable.just(initSat()));
+       Mockito.when(mService.getSchools(any())).thenReturn( Observable.just(initScools()));
+       Mockito.when(mService.getSAT(any())).thenReturn( Observable.just(initSat()));
         mRepo.initNYCSchools();
         List<NYCSchools> schools = mRepo.getSchools().toList().blockingGet().get(0);
         assertEquals(true,compareIds(schools));

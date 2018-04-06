@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.GeneralClickAction;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Tap;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.rule.ActivityTestRule;
@@ -30,7 +27,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasData;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -69,14 +65,6 @@ public class SchoolActivityTest {
         onView(withId(R.id.dialog)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void test_dialog_closed() {
-        onView(withId(R.id.school_list)).perform(RecyclerViewActions.actionOnItemAtPosition(3,click()));
-
-        onView(withId(R.id.dialog)).perform(clickXY(-150, -400));
-        //onView(withId(R.id.dialog)).check(matches(not(isDisplayed())));
-
-    }
 
     @Test
     public void test_clickURL() {
@@ -102,23 +90,6 @@ public class SchoolActivityTest {
     private int getItems(){
         RecyclerView recyclerView = mActivityRule.getActivity().findViewById(R.id.school_list);
         return recyclerView.getAdapter().getItemCount();
-    }
-
-    public static ViewAction clickXY(final int x, final int y){
-        return new GeneralClickAction(
-                Tap.SINGLE,
-                (view) -> {
-                        final int[] screenPos = new int[2];
-                        view.getLocationOnScreen(screenPos);
-
-                        final float screenX = screenPos[0] +x;
-                        final float screenY = screenPos[1] + y;
-                        float[] coordinates = {screenX, screenY};
-
-                        return coordinates;
-                    }
-                ,
-                Press.PINPOINT);
     }
 
     private String getText(final Matcher<View> matcher) {

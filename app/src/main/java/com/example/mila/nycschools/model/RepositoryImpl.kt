@@ -1,7 +1,7 @@
 package com.example.mila.nycschools.model
 
 import com.example.mila.nycschools.model.AppConstants.APP_TOKEN
-import com.example.mila.nycschools.network.ServiceInjector
+import com.example.mila.nycschools.network.Injector
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import java.util.ArrayList
@@ -15,10 +15,9 @@ import java.util.stream.Collectors
 open class RepositoryImpl private constructor(){
 
     private object Holder { val INSTANCE = RepositoryImpl() }
-    private val mApiService = ServiceInjector.inject()
+    private val mApiService = Injector.getApi()
     private var mNYCSchools:Observable<List<NYCSchools>> ?= null
     open fun getSchools():Observable<List<NYCSchools>>? = mNYCSchools
-
 
 
     companion object {
