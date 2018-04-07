@@ -2,6 +2,7 @@ package com.example.mila.nycschools;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -87,6 +88,35 @@ public class SchoolActivityTest {
         Intents.release();
     }
 
+    @Test
+    public void test_dialog_data_displayed() {
+        onView(withId(R.id.school_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.school_title)).check(matches(isDisplayed()));
+        onView(withId(R.id.main_study)).check(matches(isDisplayed()));
+        onView(withId(R.id.reading_sat)).check(matches(isDisplayed()));
+        onView(withId(R.id.writing_sat)).check(matches(isDisplayed()));
+        onView(withId(R.id.math_sat)).check(matches(isDisplayed()));
+    }
+
+
+    @Test
+    public void test_recyclerView_after_rotation() {
+        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        boolean isEmpty=true;
+        if (getItems() > 0){
+            isEmpty=false;
+        }
+        assertEquals(false,isEmpty);
+    }
+
+    @Test
+    public void test_dialog_after_rotation() {
+        onView(withId(R.id.school_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.dialog)).check(matches(isDisplayed()));
+        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        onView(withId(R.id.dialog)).check(matches(isDisplayed()));
+    }
+
     private int getItems(){
         RecyclerView recyclerView = mActivityRule.getActivity().findViewById(R.id.school_list);
         return recyclerView.getAdapter().getItemCount();
@@ -107,7 +137,7 @@ public class SchoolActivityTest {
 
             @Override
             public void perform(UiController uiController, View view) {
-                TextView tv = (TextView)view; //Save, because of check in getConstraints()
+                TextView tv = (TextView)view;
                 stringHolder[0] = tv.getText().toString();
             }
         });

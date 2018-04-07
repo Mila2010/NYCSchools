@@ -4,8 +4,6 @@ package com.example.mila.nycschools;
 
 import com.example.mila.nycschools.model.NYCSchools;
 import com.example.mila.nycschools.model.RepositoryImpl;
-import com.example.mila.nycschools.model.SATResponse;
-import com.example.mila.nycschools.model.SchoolResponse;
 import com.example.mila.nycschools.presenter.Presenter;
 import com.example.mila.nycschools.view.SchoolAdapter;
 
