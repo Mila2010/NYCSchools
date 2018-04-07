@@ -69,6 +69,7 @@ public class SchoolActivityTest {
 
     @Test
     public void test_clickURL() {
+        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intents.init();
         onView(withId(R.id.school_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         String url = getText(withId(R.id.url));
@@ -80,6 +81,7 @@ public class SchoolActivityTest {
 
     @Test
     public void test_clickNumber() {
+        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intents.init();
         onView(withId(R.id.school_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         onView(withId(R.id.phone_value)).perform(click());
